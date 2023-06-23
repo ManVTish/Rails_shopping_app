@@ -43,6 +43,8 @@ gem "devise", "~> 4.9.2"
 
 gem "rubocop", "~> 1.53", require: false
 
+gem "activeadmin", "~> 2.14.0"
+
 # Use Sass to process CSS
 gem "sassc-rails", "~> 2.1.2"
 
