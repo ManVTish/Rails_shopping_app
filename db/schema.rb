@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_074846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "items", force: :cascade do |t|
@@ -40,8 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "status", default: "started"
-    # t.string "comment", default: "order placed"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,7 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "category"
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
-    # t.string "comment"
     t.bigint "user_id"
     t.bigint "product_id"
     t.datetime "created_at", null: false
