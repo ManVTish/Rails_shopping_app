@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_22_114728) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_072118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
-    t.boolean "order_placed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_114728) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.string "status", default: "started"
-    t.string "comment", default: "order placed"
+    # t.string "comment", default: "order placed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,11 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_114728) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "ratings"
-    t.string "comments"
+    t.integer "rating"
+    # t.string "comment"
     t.bigint "user_id"
     t.bigint "product_id"
     t.datetime "created_at", null: false
@@ -72,4 +79,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_114728) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "categories"
 end
