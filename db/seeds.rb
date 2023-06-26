@@ -17,7 +17,7 @@ if Rails.env.development?
   # Seed Products Data
   pro_res = JSON.parse(RestClient.get('https://fakestoreapi.com/products'))
   pro_res.each do |p|
-    Product.create!(
+    product = Product.create!(
       name: p['title'],
       description: p['description'],
       stock: p['rating']['count'],
@@ -33,5 +33,6 @@ if Rails.env.development?
                      4
                    end
     )
+    product.download_image(p['image'])
   end
 end
