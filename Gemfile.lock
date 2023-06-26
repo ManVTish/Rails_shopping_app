@@ -323,7 +323,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.5)
-  rest-client
+  rest-client (~> 2.1.0)
   rspec-rails (~> 6.0.3)
   rubocop (~> 1.53)
   sassc-rails (~> 2.1.2)
