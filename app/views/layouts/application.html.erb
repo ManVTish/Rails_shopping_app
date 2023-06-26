@@ -23,8 +23,10 @@
   </head>
 
   <body>
-  <%= render "layouts/shared/header" %>
-  <%= render "layouts/shared/navbar" %>
+  <div class="flex flex-col">
+    <%= render "layouts/shared/header" %>
+    <%= render "layouts/shared/navbar" %>
+  </div>
     <main class="container mx-auto mt-28 px-5 flex">
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
