@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shopapp</title>
+    <title>FashionSaga</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/stylesheets/application.tailwind.css">
+    <%= favicon_link_tag 'favicon.ico' %>
 
-    <link rel="stylesheet" href="assets/stylesheets/application.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -19,13 +17,7 @@
   <body>
   <%= render "layouts/shared/header" %>
   <%= render "layouts/shared/navbar" %>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-
+  <%= render "layouts/shared/flash" %>
     <%= yield %>
   <%= render "layouts/shared/footer" %>
   </body>
