@@ -1,29 +1,45 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="contain py-16">
+  <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+    <h2 class="text-2xl uppercase font-medium mb-1">Create an account</h2>
+    <p class="text-gray-600 mb-6 text-sm">
+      Register for new customer
+    </p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="space-y-4">
+        <div class="field">
+          <%= f.label :name, class: "text-gray-600" %><br />
+          <%= f.text_field :name, class: "block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400" %>
+        </div>
+        <div class="field">
+          <%= f.label :email, class: "text-gray-600" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400" %>
+        </div>
+        <div class="field">
+          <%= f.label :password, class: "text-gray-600" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400", placeholder: "*******" %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation, class: "text-gray-600" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400", placeholder: "*******" %>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="actions">
+          <%= f.submit "Create Account", class: "block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mt-4 text-center text-gray-600">
+      <p>Already have account?
+        <%= link_to "Login now", new_session_path(resource_name), class: "text-primary" %>
+      </p>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
