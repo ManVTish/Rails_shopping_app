@@ -1,0 +1,37 @@
+<!-- sidebar -->
+
+<div class="col-span-1 bg-white px-2 pb-6 shadow rounded overflow-hidden hidden md:block">
+  <div class="divide-y divide-gray-200 space-y-5">
+    <div>
+      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
+      <div class="space-y-2">
+        <div class="flex flex-col items-left">
+          <% Category.all.each do |category| %>
+            <div>
+              <%= check_box_tag('category_tag', value = category, checked = false,
+                                options = { class: "product_category" })%>
+              <label for="cat-2" class="text-gray-600 ml-3 cursor-pointer">
+                <%= category.name.capitalize %>
+                (<%= category.products.count %>)
+              </label>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4">
+      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
+      <div class="mt-4 flex items-center">
+        <input type="text" name="min" id="min"
+                class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+                placeholder="min">
+        <span class="mx-3 text-gray-500">-</span>
+        <input type="text" name="max" id="max"
+                class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+                placeholder="max">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./sidebar -->
