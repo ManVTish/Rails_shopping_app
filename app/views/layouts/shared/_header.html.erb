@@ -4,22 +4,28 @@
       <%= image_tag "logo.svg" %>
     </a>
 
-    <div class="flex items-center space-x-4">
-      <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
-        <div class="text-2xl">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAABU0lEQVR4nLXULUwdQRTF8R9BoFA0KSWo4lpTJA5USQmVOD6agCqaz5oGA66uGFCAw4EBBxiQxYCjCoEAg0CVbHJpXpbZ90h2+Cc3m5lz95zZyezwcroxhfl4FuNstGERN9jCKrZjvBB6bYqA08TK3+EMc3UDumPFVVvTE/rbOiHfYouasYPJOiE/sNKiZyX6XsxAnJ6nOoyab1KpnsKnkl84iBNU1EnUapMq9xyETyW7GCuFNn3B856x8KnkrPSpd7htEXJX6hkIn0qu0dswHsGXFiEjpZ7e8EnSgQe0q0d7+BR+z+jDlTz8xfuUMISjTCHHGEwJE3Hx5WAH4ylhOc55DtawlBLW8T1TyCx+p4R9jGYK+Yq9lHCOT5lC+vGn6s/tyhTyJnVTdOJeXu7D9z8fcZE55BIfGieG44rOySE+N07MYCNzyCamGyd+4t8rVOHrEcDeYUZ1jJtjAAAAAElFTkSuQmCC">
+    <% if user_signed_in? %>
+      <div class="flex items-center space-x-4">
+        <div class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAABU0lEQVR4nLXULUwdQRTF8R9BoFA0KSWo4lpTJA5USQmVOD6agCqaz5oGA66uGFCAw4EBBxiQxYCjCoEAg0CVbHJpXpbZ90h2+Cc3m5lz95zZyezwcroxhfl4FuNstGERN9jCKrZjvBB6bYqA08TK3+EMc3UDumPFVVvTE/rbOiHfYouasYPJOiE/sNKiZyX6XsxAnJ6nOoyab1KpnsKnkl84iBNU1EnUapMq9xyETyW7GCuFNn3B856x8KnkrPSpd7htEXJX6hkIn0qu0dswHsGXFiEjpZ7e8EnSgQe0q0d7+BR+z+jDlTz8xfuUMISjTCHHGEwJE3Hx5WAH4ylhOc55DtawlBLW8T1TyCx+p4R9jGYK+Yq9lHCOT5lC+vGn6s/tyhTyJnVTdOJeXu7D9z8fcZE55BIfGieG44rOySE+N07MYCNzyCamGyd+4t8rVOHrEcDeYUZ1jJtjAAAAAElFTkSuQmCC">
+          </div>
+          <div class="text-xs leading-3">
+            <%= link_to "Cart", edit_user_registration_path, class: "navbar-link" %>
+          </div>
+          <div class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+            2
+          </div>
         </div>
-        <div class="text-xs leading-3">Cart</div>
-        <div
-          class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-          2</div>
-      </a>
-      <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
-        <div class="text-2xl">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+ElEQVR4nOXUPS4FURgG4CeEVmsDKMUGKKhYgojkFjYgoiKiEgVWQE3YAhtQ3Eb8FBQKW0DijpzkVDdu5rtzppDcN3lzcs78PM03w6hlCvu4x3te9/J5K5nFG6o/+oqZUmASjwOAKvcBEyXIRg1Q5a6XIBdB5LwEuQki1yXIcRA5KkEW0KsBfjCvMGc1yIkWMoZDfPa9PO0P8vXWMo1N7OY17f9/5tDB1hDt5F9QKGv4Do5u1dcvrEaQu4ZAlXsbQbqFSDeCXBUilxFkKfCVVwOanlsUzE4DqIdtQyZN2XMQeMr3N8o4VnCap+4FH3lNU5TOl/N9I5BfpNrIvso7Tz4AAAAASUVORK5CYII=">
+        <div class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl px-4">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+ElEQVR4nOXUPS4FURgG4CeEVmsDKMUGKKhYgojkFjYgoiKiEgVWQE3YAhtQ3Eb8FBQKW0DijpzkVDdu5rtzppDcN3lzcs78PM03w6hlCvu4x3te9/J5K5nFG6o/+oqZUmASjwOAKvcBEyXIRg1Q5a6XIBdB5LwEuQki1yXIcRA5KkEW0KsBfjCvMGc1yIkWMoZDfPa9PO0P8vXWMo1N7OY17f9/5tDB1hDt5F9QKGv4Do5u1dcvrEaQu4ZAlXsbQbqFSDeCXBUilxFkKfCVVwOanlsUzE4DqIdtQyZN2XMQeMr3N8o4VnCap+4FH3lNU5TOl/N9I5BfpNrIvso7Tz4AAAAASUVORK5CYII=">
+          </div>
+          <div class="text-xs leading-3">
+            <%= link_to "Account", edit_user_registration_path, class: "navbar-link" %>
+          </div>
         </div>
-        <div class="text-xs leading-3">Account</div>
-      </a>
-    </div>
+      </div>
+    <% end %>
   </div>
 </header>
