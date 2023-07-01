@@ -6,9 +6,14 @@ class ProductsController < ApplicationController
 
   def index
     @products = if params[:category_ids]
-                  Product.where(category_id: params[:category_ids])
-                else
-                  Product.all.each
-                end
+        Product.where(category_id: params[:category_ids])
+      else
+        Product.all
+      end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 end
