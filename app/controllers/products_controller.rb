@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = if params[:category_checkbox]
-                  Category.filter_by_category.products.all
+    @products = if params[:category_ids]
+                  Product.where(category_id: params[:category_ids])
                 else
                   Product.all.each
                 end

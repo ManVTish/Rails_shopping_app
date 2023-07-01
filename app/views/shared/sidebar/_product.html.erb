@@ -6,15 +6,20 @@
       <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
       <div class="space-y-2">
         <div class="flex flex-col items-left">
-          <% Category.all.each do |category| %>
-            <div>
-              <%= check_box_tag('category_tag', value = category, checked = false,
-                                options = { class: "product_category" })%>
-              <label for="cat-2" class="text-gray-600 ml-3 cursor-pointer">
-                <%= category.name.capitalize %>
-                (<%= category.products.count %>)
-              </label>
-            </div>
+          <%= form_with url: products_path, method: :get, data: { controller: 'checkbox', turbo_frame: 'productList', turbo_action: 'advance', action: "change->checkbox#toggle" } do |f| %>
+            <% Category.all.each do |category| %>
+              <div>
+                <%= f.check_box :category_ids,
+                  { multiple: true, class: "product_category", checked: params[:category_ids].include?(category.id.to_s) },
+                  category.id,
+                  nil
+                %>
+                <%= f.label :option_ids, class: "text-gray-600 ml-3 cursor-pointer" do %>
+                  <%= category.name.capitalize %>
+                  (<%= category.products.count %>)
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
