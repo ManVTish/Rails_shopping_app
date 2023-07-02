@@ -2,45 +2,56 @@
 
 <div class="col-span-1 bg-white px-2 pb-6 shadow rounded overflow-hidden hidden md:block">
   <div class="divide-y divide-gray-200 space-y-5">
-    <div>
-      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
-      <div class="space-y-2">
-        <div class="flex flex-col items-left">
-          <%= form_with url: products_path, method: :get, data: { controller: 'checkbox', turbo_stream: 'true', turbo_frame: 'products', turbo_action: 'advance', action: "change->checkbox#toggle" } do |f| %>
-            <% Category.all.each do |category| %>
-              <div>
-                <%= f.check_box :category_ids,
-                  {
-                    multiple: true, class: "product_category",
-                    checked: params[:category_ids]&.include?(category.id.to_s),
-                    data: { 'checkbox-target' => 'checkbox' }
-                  },
-                  category.id,
-                  nil
-                %>
-                <%= f.label :option_ids, class: "text-gray-600 ml-3 cursor-pointer" do %>
-                  <%= category.name.capitalize %>
-                  (<%= category.products.count %>)
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
+    <%= search_form_for @query, url: products_path, method: :get, data: { controller: 'filter', turbo_stream: 'true', turbo_frame: 'products', action: "input->filter#toggle" } do |f| %>
+      <div>
+        <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
+        <div class="space-y-2">
+          <div class="flex flex-col items-left">
+              <% Category.all.each do |category| %>
+                <div>
+                  <%= f.check_box :category_id_in,
+                    {
+                      multiple: true, class: "product_category",
+                      checked: category_selected?(params[:query], category.id),
+                      data: { 'filter-target' => 'checkbox' },
+                      class: 'category-checkbox-filters'
+                    },
+                    category.id,
+                    nil
+                  %>
+                  <%= f.label "category_id_in_#{category.id}", class: "text-gray-600 ml-3 cursor-pointer" do %>
+                    <%= category.name.capitalize %>
+                    (<%= category.products.count %>)
+                  <% end %>
+                </div>
+              <% end %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="pt-4">
-      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
-      <div class="mt-4 flex items-center">
-        <input type="text" name="min" id="min"
-                class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-                placeholder="min">
-        <span class="mx-3 text-gray-500">-</span>
-        <input type="text" name="max" id="max"
-                class="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-                placeholder="max">
+      <div class="pt-4">
+        <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
+          <div class="mt-4 flex items-center">
+            <%= f.number_field :price_gteq, min: 0, class: "w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm", placeholder: 'min', data: { 'filter-target' => 'input' } %>
+            <span class="mx-3 text-gray-500">-</span>
+            <%= f.number_field :price_lteq, min: 0, class: "w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm", placeholder: 'max', data: { 'filter-target' => 'input' } %>
+          </div>
       </div>
-    </div>
+
+      <div class="pt-4">
+
+      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Sort By</h3>
+        <div class="flex items-center mb-4">
+          <select name="sort" id="sort"
+                  class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
+            <option value="">Default sorting</option>
+            <option value="price-low-to-high">Price low to high</option>
+            <option value="price-high-to-low">Price high to low</option>
+            <option value="latest">Latest product</option>
+          </select>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 <!-- ./sidebar -->

@@ -5,12 +5,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = if params[:category_ids]
-        Product.where(category_id: params[:category_ids])
-      else
-        Product.all
-      end
-
+    @query = Product.ransack(params[:query])
+    @pagy, @products = pagy(@query.result)
     respond_to do |format|
       format.html
       format.turbo_stream
