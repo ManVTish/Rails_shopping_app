@@ -6,7 +6,7 @@
         <h4 class="text-lg font-medium capitalize mb-4">
             Profile information
         </h4>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="grid grid-cols-4 gap-4">
@@ -28,7 +28,7 @@
               </div>
           </div>
           <div class="mt-4 text-center">
-              <%= f.submit "Submit Changes", class: "w-auto text-center py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium" %>
+              <%= f.submit "Submit Changes", class: "cursor-pointer w-auto text-center py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium" %>
           </div>
         <% end %>
 

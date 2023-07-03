@@ -7,7 +7,7 @@
       welcome back customer
     </p>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="space-y-4">
         <div class="field">
@@ -29,7 +29,7 @@
       </div>
       <div class="mt-4">
         <div class="actions">
-          <%= f.submit "Login", class: "block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium" %>
+          <%= f.submit "Login", class: "cursor-pointer block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium",  data: { turbo_frame: '_top' } %>
         </div>
       </div>
     <% end %>
