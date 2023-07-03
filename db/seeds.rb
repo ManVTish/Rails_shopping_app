@@ -28,6 +28,7 @@ if Rails.env.development?
       description: p['description'],
       stock: p['rating']['count'],
       price: p['price'],
+      discount: rand * 20,
       category_id: case p['category']
                    when 'electronics'
                      1
