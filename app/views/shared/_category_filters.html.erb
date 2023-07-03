@@ -11,10 +11,9 @@
                 <div>
                   <%= f.check_box :category_id_in,
                     {
-                      multiple: true, class: "product_category",
+                      multiple: true, class: "product_category category-checkbox-filters",
                       checked: category_selected?(params[:query], category.id),
                       data: { 'filter-target' => 'checkbox' },
-                      class: 'category-checkbox-filters'
                     },
                     category.id,
                     nil
@@ -40,15 +39,15 @@
 
       <div class="pt-4">
 
-      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Sort By</h3>
-        <div class="flex items-center mb-4">
-          <select name="sort" id="sort"
-                  class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
-            <option value="">Default sorting</option>
-            <option value="price-low-to-high">Price low to high</option>
-            <option value="price-high-to-low">Price high to low</option>
-            <option value="latest">Latest product</option>
-          </select>
+      <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">
+        <%= f.label :s, t('Sort By') %>
+      </h3>
+        <div data-controller="product-sort" class="flex items-center mb-4">
+          <%= f.select :s, options_for_select(
+            [[t('Default'),''],
+             [t('Price low to high'),'price asc'],
+             [t('Price high to low'),'price desc'],
+             [t('Latest products'),'created_at desc']], params.dig(:query,:s)) %>
         </div>
       </div>
     <% end %>
