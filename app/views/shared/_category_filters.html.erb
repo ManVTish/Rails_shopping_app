@@ -43,15 +43,7 @@
         <%= f.label :s, t('Sort By') %>
       </h3>
         <div class="flex items-center mb-4">
-          <%= f.select :s, options_for_select(
-              [
-                [t('Default'),''],
-                [t('Price low to high'),'price asc'],
-                [t('Price high to low'),'price desc'],
-                [t('Latest products'),'created_at desc']
-              ],
-              params.dig(:query,:s)
-            ),
+          <%= f.select :s, sort_by_selected?,
             {},
             { data: { action: 'change->filter#update', filter_target: 'select' } }
           %>
