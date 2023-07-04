@@ -13,8 +13,7 @@ export default class extends Controller {
     const minPriceField = this.inputTargets.find(field => field.id == 'query_price_gteq')
     const maxPriceField = this.inputTargets.find(field => field.id == 'query_price_lteq')
 
-    let queryParams = this.query_url()[0]
-    let newUrl = this.query_url()[1]
+    let queryParams = new URLSearchParams(window.location.search);
 
     if (minPriceField.value.length) {
       queryParams.set('query[price_gteq]', minPriceField.value)
@@ -28,12 +27,7 @@ export default class extends Controller {
       queryParams.delete('query[price_lteq]')
     }
 
-    if (queryParams.toString()) {
-      newUrl = newUrl + `?${queryParams.toString()}`;
-    }
-
-    window.history.pushState(null, '', newUrl);
-    this.element.requestSubmit()
+    this.submit(queryParams)
   }
 
   toggle() {
@@ -41,8 +35,7 @@ export default class extends Controller {
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
 
-    let queryParams = this.query_url()[0]
-    let newUrl = this.query_url()[1]
+    let queryParams = new URLSearchParams(window.location.search);
 
       queryParams.delete('query[category_id_eq]')
 
@@ -52,24 +45,25 @@ export default class extends Controller {
         queryParams.delete('query[category_id_in][]')
       }
 
-      if (queryParams.toString()) {
-        newUrl = newUrl + `?${queryParams.toString()}`;
-      }
-
-      window.history.pushState(null, '', newUrl);
-      this.element.requestSubmit()
+      this.submit(queryParams)
   }
 
   update() {
     const sortBy = this.selectTarget.value;
 
-    let queryParams = this.query_url()[0]
-    let newUrl = this.query_url()[1]
+    let queryParams = new URLSearchParams(window.location.search);
+
     if (sortBy) {
       queryParams.set('query[s]', sortBy)
     } else {
       queryParams.delete('query[s]')
     }
+
+    this.submit(queryParams)
+  }
+
+  submit(queryParams) {
+    let newUrl = `${window.location.pathname}`
 
     if (queryParams.toString()) {
       newUrl = newUrl + `?${queryParams.toString()}`;
@@ -77,11 +71,5 @@ export default class extends Controller {
 
     window.history.pushState(null, '', newUrl);
     this.element.requestSubmit()
-  }
-
-  query_url() {
-    let queryParams = new URLSearchParams(window.location.search);
-    let newUrl = `${window.location.pathname}`
-    return [queryParams, newUrl]
   }
 }
