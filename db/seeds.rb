@@ -5,9 +5,9 @@ if Rails.env.development?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
   # Seed Categories data
-  cat_res = JSON.parse(RestClient.get("https://fakestoreapi.com/products/categories"))
-  cat_res.each do |cat|
-    Category.create!(name: cat)
+  category_response = JSON.parse(RestClient.get("https://fakestoreapi.com/products/categories"))
+  category_response.each do |category|
+    Category.create!(name: category)
   end
 
   # image download helper
@@ -21,26 +21,17 @@ if Rails.env.development?
   end
 
   # Seed Products Data
-  pro_res = JSON.parse(RestClient.get('https://fakestoreapi.com/products'))
-  pro_res.each do |p|
-    product = Product.create!(
-      name: p['title'],
-      description: p['description'],
-      stock: p['rating']['count'],
-      price: p['price'],
-      discount: rand * 20,
-      category_id: case p['category']
-                   when 'electronics'
-                     1
-                   when 'jewelery'
-                     2
-                   when "men's clothing"
-                     3
-                   else
-                     4
-                   end
+  product_response = JSON.parse(RestClient.get('https://fakestoreapi.com/products'))
+  product_response.each do |product|
+    product_var = Product.create!(
+      name: product['title'],
+      description: product['description'],
+      stock: product['rating']['count'],
+      price: product['price'],
+      discount: rand(10..20),
+      category_id: Category.find_by(name: product['category']).id
     )
     product_images = download_image(p['image'])
-    product.images.attach(io: product_images.first, filename: product_images.last)
+    product_var.images.attach(io: product_images.first, filename: product_images.last)
   end
 end

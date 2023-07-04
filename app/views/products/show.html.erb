@@ -1,7 +1,7 @@
 <div class="container grid grid-cols-2 gap-6">
   <div class="container w-1/2 py-16">
     <% if @product.images.present? %>
-      <%= image_tag @product.images.sample, class: "w-full" %>
+      <%= image_tag @product.primary_image, class: "w-full" %>
     <% else %>
       <%= "No Image Found" %>
     <% end %>

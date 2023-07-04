@@ -43,7 +43,7 @@
         <%= f.label :s, t('Sort By') %>
       </h3>
         <div class="flex items-center mb-4">
-          <%= f.select :s, sort_by_selected?,
+          <%= f.select :s, options_for_select( sort_option_list, params.dig(:query, :s)),
             {},
             { data: { action: 'change->filter#update', filter_target: 'select' } }
           %>

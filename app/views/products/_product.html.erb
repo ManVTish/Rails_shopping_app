@@ -1,7 +1,7 @@
 <div class="bg-white shadow rounded overflow-hidden group">
   <div class="relative">
     <% if product.images.present? %>
-      <%= image_tag product.images.sample, class: "w-full h-60 object-contain" %>
+      <%= image_tag product.primary_image, class: "w-full h-60 object-contain" %>
     <% else %>
       <%= "No Image Found" %>
     <% end %>

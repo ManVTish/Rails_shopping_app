@@ -17,12 +17,12 @@ RSpec.describe 'Products', type: :request do
       )
     end
 
-    it 'should render show' do
+    it 'renders show page' do
       get '/products/1'
       expect(response).to have_http_status(:success)
     end
 
-    it 'should render index' do
+    it 'renders index page' do
       get '/products'
       expect(response).to have_http_status(:success)
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Products', type: :request do
   context 'products sorting' do
     let(:categories) { create(:categories) }
 
-    it 'should render index page' do
+    it 'renders index page' do
       get '/products', params: {
         query: {
           'category_id_in' => ['0'],
