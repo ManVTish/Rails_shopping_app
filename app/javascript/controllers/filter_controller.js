@@ -5,7 +5,7 @@ import debounce from "debounce"
 export default class extends Controller {
   static targets = ['checkbox', 'input', 'select']
   initialize(){
-    this.range = debounce(this.range.bind(this), 1000)
+    this.range = debounce(this.range.bind(this), 800)
   }
 
   range(){

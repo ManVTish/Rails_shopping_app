@@ -9,9 +9,3 @@ application.register("dropdown", DropdownController)
 
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
-
-import InputController from "./input_controller"
-application.register("input", InputController)
-
-import ProductSortController from "./product_sort_controller"
-application.register("product-sort", ProductSortController)
