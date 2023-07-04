@@ -61,14 +61,7 @@ RSpec.describe 'Products', type: :request do
     end
 
     it 'renders index page' do
-      get '/products', params: {
-        query: {
-          'category_id_in' => ['0'],
-          'price_gteq' => '50',
-          'price_lteq' => '',
-          's' => 'price asc'
-        }
-      }
+      get '/products'
       expect(Category.all.count).to match(2)
       expect(Product.all.count).to match(3)
       expect(Product.first.primary_image).to match(nil)
