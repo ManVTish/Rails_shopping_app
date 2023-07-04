@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!
   def show
     @product = Product.find_by(id: params[:id])
+    render :show, status: :ok
   end
 
   def index
@@ -12,5 +13,6 @@ class ProductsController < ApplicationController
       format.html
       format.turbo_stream
     end
+    render :index, status: :ok
   end
 end
