@@ -42,12 +42,19 @@
       <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">
         <%= f.label :s, t('Sort By') %>
       </h3>
-        <div data-action="click->filter#update" data-filter-target="select" class="flex items-center mb-4">
+        <div class="flex items-center mb-4">
           <%= f.select :s, options_for_select(
-            [[t('Default'),''],
-             [t('Price low to high'),'price asc'],
-             [t('Price high to low'),'price desc'],
-             [t('Latest products'),'created_at desc']], params.dig(:query,:s)) %>
+              [
+                [t('Default'),''],
+                [t('Price low to high'),'price asc'],
+                [t('Price high to low'),'price desc'],
+                [t('Latest products'),'created_at desc']
+              ],
+              params.dig(:query,:s)
+            ),
+            {},
+            { data: { action: 'change->filter#update', filter_target: 'select' } }
+          %>
         </div>
       </div>
     <% end %>

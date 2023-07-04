@@ -60,7 +60,7 @@ export default class extends Controller {
   }
 
   update() {
-    const sortBy = this.selectTargets.value;
+    const sortBy = this.selectTarget.value;
 
     let queryParams = new URLSearchParams(window.location.search);
     let newUrl = `${window.location.pathname}`
@@ -75,9 +75,8 @@ export default class extends Controller {
       newUrl = newUrl + `?${queryParams.toString()}`;
     }
 
-    console.log(newUrl)
     window.history.pushState(null, '', newUrl);
-    // this.element.requestSubmit()
+    this.element.requestSubmit()
 
   }
 }
