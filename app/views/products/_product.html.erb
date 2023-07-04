@@ -1,6 +1,10 @@
 <div class="bg-white shadow rounded overflow-hidden group">
   <div class="relative">
-    <%= image_tag product.images.sample, class: "w-full h-60 object-contain" %>
+    <% if product.images.present? %>
+      <%= image_tag product.images.sample, class: "w-full h-60 object-contain" %>
+    <% else %>
+      <%= "No Image Found" %>
+    <% end %>
   </div>
   <div class="pt-4 pb-3 px-4">
     <%= link_to product_path(product.id), data: { turbo_frame: '_top' } do %>

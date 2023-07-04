@@ -1,6 +1,10 @@
 <div class="container grid grid-cols-2 gap-6">
   <div class="container w-1/2 py-16">
-    <%= image_tag @product.images.sample, class: "w-full" %>
+    <% if @product.images.present? %>
+      <%= image_tag @product.images.sample, class: "w-full" %>
+    <% else %>
+      <%= "No Image Found" %>
+    <% end %>
   </div>
 
   <div>
@@ -33,7 +37,10 @@
     </div>
     <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
       <p class="text-xl text-primary font-semibold">Rs. <%= @product.price %></p>
-      <p class="text-xl text-primary font-semibold">Rs. <%= @product.discount %></p>
+      <p class="text-xl text-primary font-semibold">
+        <span class="text-gray-800 font-semibold">Discount %: </span>
+        <span class="text-gray-600"><%= @product.discount.round(2) %></span>
+      </p>
       <p class="text-base text-gray-400 line-through">$55.00</p>
     </div>
 
