@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @query = Product.ransack(params[:query])
-    @query.sorts = ['created_at asc'] if @query.sorts.empty? # sorting_product(@query)
+    @query.sorts = ['created_at asc'] if @query.sorts.empty?
     @pagy, @products = pagy(@query.result)
     respond_to do |format|
       format.html
