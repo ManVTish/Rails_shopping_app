@@ -37,15 +37,15 @@ export default class extends Controller {
 
     let queryParams = new URLSearchParams(window.location.search);
 
-      queryParams.delete('query[category_id_eq]')
+    queryParams.delete('query[category_id_eq]')
 
-      if (selectedCheckboxValues.length) {
-        queryParams.set('query[category_id_in][]', selectedCheckboxValues);
-      } else {
-        queryParams.delete('query[category_id_in][]')
-      }
+    if (selectedCheckboxValues.length) {
+      queryParams.set('query[category_id_in][]', selectedCheckboxValues);
+    } else {
+      queryParams.delete('query[category_id_in][]')
+    }
 
-      this.submit(queryParams)
+    this.submit(queryParams)
   }
 
   update() {
