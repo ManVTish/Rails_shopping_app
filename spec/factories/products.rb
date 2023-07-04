@@ -18,6 +18,7 @@ FactoryBot.define do
         price { i * 15 }
         discount { rand * i * 10 }
         description { "This is product description #{i}" }
+        category
       end
     end
   end

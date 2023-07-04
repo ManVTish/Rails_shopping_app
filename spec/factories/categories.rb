@@ -10,7 +10,6 @@ FactoryBot.define do
 
     trait :one_category do
       name { 'category_1' }
-      association :product, factory: :products
     end
   end
 end
