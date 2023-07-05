@@ -19,12 +19,15 @@ RSpec.describe ProductsHelper, type: :helper do
 
   describe ProductsHelper do
     describe 'sorting params' do
-      it 'checks type returned' do
+      it 'validates returned type' do
         expect(helper.sort_option_list.is_a?(Array)).to eq(true)
       end
 
       it 'selects Price low to high option' do
+        expect(helper.sort_option_list.first.second).to match('')
         expect(helper.sort_option_list.second.second).to match('price asc')
+        expect(helper.sort_option_list.third.second).to match('price desc')
+        expect(helper.sort_option_list.last.second).to match('created_at des')
       end
     end
   end

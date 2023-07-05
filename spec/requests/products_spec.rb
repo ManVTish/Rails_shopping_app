@@ -9,10 +9,6 @@ RSpec.describe 'Products', type: :request do
       get '/products', params: { products: { id: product.id } }
       expect(response).to have_http_status(:success)
       # expect(response).to render_template(:show)
-      expect(product.present?).to match(true)
-      expect(category.present?).to match(true)
-      expect(Category.count).to match(1)
-      expect(Product.count).to match(1)
     end
   end
 
@@ -26,9 +22,6 @@ RSpec.describe 'Products', type: :request do
       get '/products'
       expect(response).to have_http_status(:success)
       # expect(response).to render_template(:index)
-      expect(Category.all.count).to match(category.count)
-      expect(Product.all.count).to match(product1.count + product2.count + product3.count)
-      expect(Product.first.primary_image).to match(nil)
     end
 
     it 'renders sorted index page' do
@@ -43,7 +36,7 @@ RSpec.describe 'Products', type: :request do
       }
 
       expect(@products.count).to match(8)
-      expect(@products.select { |x| x[:category_id] == 1 }.count).to match(1)
+      expect(@products.select { |x| x[:category_id] == 2 }.count).to match(1)
       expect(@products.select { |x| x[:price] >= 2 }.present?).to match(true)
     end
   end

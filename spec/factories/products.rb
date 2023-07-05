@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :product, class: 'Product' do
-    name { Faker::Name.name }
-    description { Faker::Lorem.sentence }
-    price { Faker::Number.number(digits: 1) }
+    name { Faker::Commerce.product_name }
+    description { Faker::Commerce.department(max: 3, fixed_amount: true) }
+    price { Faker::Commerce.price }
     stock { Faker::Number.number(digits: 2) }
     discount { Faker::Number.number(digits: 1) }
     association :category
