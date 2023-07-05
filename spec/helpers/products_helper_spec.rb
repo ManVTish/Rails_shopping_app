@@ -26,23 +26,26 @@ RSpec.describe ProductsHelper, type: :helper do
 
   describe '#sort_option_list' do
     subject { helper.sort_option_list }
-    let(:price_low_to_high) { 'price asc' }
-    let(:price_low_to_high) { 'price desc' }
-    let(:latest_product) { 'created_at desc' }
+    let(:price_low_to_high) { ['Price low to high', 'price asc'] }
+    let(:price_high_to_low) { ['Price high to low', 'price desc'] }
+    let(:latest_product) { ['Latest products', 'created_at desc'] }
 
-    context 'validates returned type' do
-      it 'returns true' do
-        is_expected.to be_a_kind_of(Array)
-      end
+    it 'returns Array' do
+      is_expected.to be_a_kind_of(Array)
     end
 
-    context 'validates list options' do
-      it 'confirms identical options' do
-        is_expected.target.first.second.to be('')
-        # is_expected.target.second.to be_identical_string(price_low_to_high)
-        # is_expected.target.third.to be_identical_string(price_low_to_high)
-        # is_expected.target.last.to be_identical_string(price_low_to_high)
-      end
+    it 'lists available options' do
+      expect(subject.flatten).to include('Default')
+      expect(subject.flatten).to include('')
+
+      expect(subject.flatten).to include(price_low_to_high[0])
+      expect(subject.flatten).to include(price_low_to_high[1])
+
+      expect(subject.flatten).to include(price_high_to_low[0])
+      expect(subject.flatten).to include(price_high_to_low[1])
+
+      expect(subject.flatten).to include(latest_product[0])
+      expect(subject.flatten).to include(latest_product[1])
     end
   end
 end
