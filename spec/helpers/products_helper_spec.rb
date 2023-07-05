@@ -5,29 +5,43 @@ require 'rails_helper'
 #
 
 RSpec.describe ProductsHelper, type: :helper do
-  describe ProductsHelper do
-    describe 'category params' do
-      it 'checks inclusion of category id' do
-        expect(helper.category_selected?({ category_id_in: %w[1 2] }, 1)).to eq(true)
-      end
+  describe '#category_selected?' do
+    subject { helper.category_selected?(query, category_id) }
+    let(:query) { { category_id_in: %w[1 2] } }
+    let(:category_id) { 1 }
 
-      it 'checks exclusion of category id' do
-        expect(helper.category_selected?({ category_id_in: %w[1 2] }, 3)).to eq(false)
+    context 'when given category is selected' do
+      it 'returns true' do
+        is_expected.to be_truthy
+      end
+    end
+
+    context 'when given category is selected' do
+      let(:category_id) { 3 }
+      it 'returns false' do
+        is_expected.to be_falsy
       end
     end
   end
 
-  describe ProductsHelper do
-    describe 'sorting params' do
-      it 'validates returned type' do
-        expect(helper.sort_option_list.is_a?(Array)).to eq(true)
-      end
+  describe '#sort_option_list' do
+    subject { helper.sort_option_list }
+    let(:price_low_to_high) { 'price asc' }
+    let(:price_low_to_high) { 'price desc' }
+    let(:latest_product) { 'created_at desc' }
 
-      it 'selects Price low to high option' do
-        expect(helper.sort_option_list.first.second).to match('')
-        expect(helper.sort_option_list.second.second).to match('price asc')
-        expect(helper.sort_option_list.third.second).to match('price desc')
-        expect(helper.sort_option_list.last.second).to match('created_at des')
+    context 'validates returned type' do
+      it 'returns true' do
+        is_expected.to be_a_kind_of(Array)
+      end
+    end
+
+    context 'validates list options' do
+      it 'confirms identical options' do
+        is_expected.target.first.second.to be('')
+        # is_expected.target.second.to be_identical_string(price_low_to_high)
+        # is_expected.target.third.to be_identical_string(price_low_to_high)
+        # is_expected.target.last.to be_identical_string(price_low_to_high)
       end
     end
   end

@@ -7,10 +7,10 @@ module ProductsHelper
 
   def sort_option_list
     [
-      [t('Default'), ''],
-      [t('Price low to high'), 'price asc'],
-      [t('Price high to low'), 'price desc'],
-      [t('Latest products'), 'created_at desc']
+      ['Default', ''],
+      ['Price low to high', 'price asc'],
+      ['Price high to low', 'price desc'],
+      ['Latest products', 'created_at desc']
     ]
   end
 end
