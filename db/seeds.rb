@@ -33,5 +33,6 @@ if Rails.env.development?
     )
     product_images = download_image(product['image'])
     product_var.images.attach(io: product_images.first, filename: product_images.last)
+    product_var.category.photo.attach(product_var.primary_image.blob) unless product_var.category.photo.attached?
   end
 end
