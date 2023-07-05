@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ['checkbox', 'input', 'select']
 
   initialize(){
-    this.range = debounce(this.range.bind(this), 800)
+    this.range = debounce(this.range.bind(this), 300)
   }
 
   range(){
