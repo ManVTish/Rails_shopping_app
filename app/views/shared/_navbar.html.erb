@@ -13,8 +13,8 @@
               <%= link_to products_path(query: { category_id_eq: category.id }),
                 class: "flex items-center px-6 py-3 hover:bg-gray-100 transition",
                 data: { turbo_frame: 'products', controller: 'dropdown', 'turbo-action' => 'advance', action: 'click->dropdown#clearCategoryFilters', 'dropdown-target' => 'dropdown'  } do %>
-                <% if category.products.sample.images.present? %>
-                  <%= image_tag category.products.sample.images.sample, class: "w-5 h-5 object-contain" %>
+                <% if category.products.sample.primary_image.present? %>
+                  <%= image_tag category.products.sample.primary_image, class: "w-5 h-5 object-contain" %>
                 <% else %>
                   <%= 'No image found' %>
                 <% end %>
