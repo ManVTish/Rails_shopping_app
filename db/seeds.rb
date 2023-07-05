@@ -31,7 +31,7 @@ if Rails.env.development?
       discount: rand(10..20),
       category_id: Category.find_by(name: product['category']).id
     )
-    product_images = download_image(p['image'])
+    product_images = download_image(product['image'])
     product_var.images.attach(io: product_images.first, filename: product_images.last)
   end
 end
