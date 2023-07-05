@@ -6,7 +6,7 @@
       Register for new customer
     </p>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name) , data: { turbo: false }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="space-y-4">
         <div class="field">
@@ -31,7 +31,7 @@
       </div>
       <div class="mt-4">
         <div class="actions">
-          <%= f.submit "Create Account", class: "block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium" %>
+          <%= f.submit "Create Account", class: "cursor-pointer block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium" %>
         </div>
       </div>
     <% end %>
