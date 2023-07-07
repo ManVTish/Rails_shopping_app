@@ -10,16 +10,11 @@ class ReviewsController < ApplicationController
     @review = @product.reviews.new(review_params)
     if @review.save
       respond_to do |format|
-        format.html { redirect_to product_path(@product.id) }
+        format.html { redirect_to product_path(@product.id), notice: 'Added new review.' }
         format.turbo_stream { flash.now[:notice] = "Added new review." }
       end
     else
       render :new, status: :unprocessable_entity
-    end
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
     end
   end
 
