@@ -1,5 +1,4 @@
 class Review < ApplicationRecord
-  has_one :comment, as: :commentable
   belongs_to :product
   belongs_to :user
 

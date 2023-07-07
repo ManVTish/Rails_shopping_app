@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :products, only: %i[index show]
+  resources :products, only: %i[index show] do
+    resources :reviews, except: :show
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
