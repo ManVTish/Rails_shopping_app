@@ -97,11 +97,8 @@
 <!-- customer reviews -->
 <div class="container pb-16">
   <h3 class="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">Customer's Review</h3>
-  <%= turbo_frame_tag @product do %>
-    <div class="w-3/5 pt-6">
-      <%= link_to "Customer Reviews of this product", product_reviews_path(@product.id),
-                  class: "btn btn--primary",
-                  data: { turbo_frame: 'product' }  %>
-    </div>
+  <%= render "reviews/form", product: @product %>
+  <%= turbo_frame_tag dom_id(@product, "reviews") do %>
+    <%= render @reviews %>
   <% end %>
 </div>

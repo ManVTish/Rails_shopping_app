@@ -1,0 +1,17 @@
+<%= form_with(model: [product, Review.new]) do |form| %>
+  <div class="flex justify-around aligns-center">
+    <div>
+      <%= form.label :rating %>
+      <%= form.number_field :rating, in: 1..5, class: 'w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :comment %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <%= form.submit %>
+  </div>
+<% end %>

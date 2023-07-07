@@ -1,9 +1,0 @@
-<%= turbo_frame_tag dom_id(Review.new) do %>
-  <div>
-    <%= link_to sanitize("&larr; Back to product page"), product_path(@product.id) %>
-    <div>
-      <h1>New Review</h1>
-    </div>
-    <%= render 'review_form', review: @review, data: { turbo_frame: dom_id(Review.new, 'form') } %>
-  </div>
-<% end %>
