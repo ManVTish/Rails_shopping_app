@@ -35,6 +35,6 @@
 /.idea/*
 .idea/*
 .env
-/.idea/.xml
+.idea/*.xml
 
 node_modules/*

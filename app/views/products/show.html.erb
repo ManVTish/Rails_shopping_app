@@ -36,12 +36,8 @@
       </p>
     </div>
     <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-      <p class="text-xl text-primary font-semibold">Rs. <%= @product.price %></p>
-      <p class="text-xl text-primary font-semibold">
-        <span class="text-gray-800 font-semibold">Discount %: </span>
-        <span class="text-gray-600"><%= @product.discount.round(2) %></span>
-      </p>
-      <p class="text-base text-gray-400 line-through">$55.00</p>
+      <p class="text-xl text-primary font-semibold">₹ <%= @product.price %></p>
+      <p class="text-base text-gray-400 line-through">₹ <%= discounted_price(@product.price, @product.discount) %></p>
     </div>
 
     <p class="mt-4 text-gray-600"><%= @product.description %></p>
@@ -95,10 +91,14 @@
 <!--</div>-->
 
 <!-- customer reviews -->
-<div class="container pb-16">
-  <h3 class="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">Customer's Review</h3>
-  <%= render "reviews/form", product: @product %>
-  <%= turbo_frame_tag dom_id(@product, "reviews") do %>
-    <%= render @reviews %>
-  <% end %>
-</div>
+
+<% if current_user %>
+  <section class="container pb-16">
+    <h3 class="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">Customer's Review</h3>
+    <%= render "reviews/form", product: @product %>
+    <%= turbo_frame_tag dom_id(@product, "reviews") do %>
+      <%= render @reviews %>
+    <% end %>
+  </section>
+<% end %>
+
