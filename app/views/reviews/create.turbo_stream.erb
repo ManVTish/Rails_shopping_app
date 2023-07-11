@@ -4,11 +4,15 @@
 
 <%= turbo_stream.update "product_rating" do %>
   <div class="flex items-center mb-4">
-    <%= render 'reviews/review_rating', value: average_rating(@product) %>
+    <%= render 'reviews/review_rating', rating: average_rating(@product) %>
     <div class="text-xs text-gray-500 ml-3">
       <% if @product.reviews %>
         <p>(<%= pluralize(@product.reviews.count, 'review') %>)</p>
       <% end %>
     </div>
   </div>
+<% end %>
+
+<%= turbo_stream.prepend 'flash' do %>
+  <% render 'shared/flash' %>
 <% end %>

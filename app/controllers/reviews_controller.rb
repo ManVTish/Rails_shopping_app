@@ -5,13 +5,15 @@ class ReviewsController < ApplicationController
   def create
     @review = @product.reviews.new(review_params)
     @review.user_id = current_user.id
-    if @review.save
+    if @review.save!
       respond_to do |format|
         format.html { redirect_to product_path(@product.id) }
         format.turbo_stream { flash.now[:notice] = 'Added new review.' }
       end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@review, partial: "reviews/form", locals: { review: @review }) }
+      end
     end
   end
 
@@ -22,8 +24,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :comment, :product_id).tap do |review_param|
-      review_param[:rating] = review_param[:rating].to_i
-    end
+    params.require(:review).permit(:rating, :comment, :product_id)
   end
 end
