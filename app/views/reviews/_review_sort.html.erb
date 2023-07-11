@@ -1,0 +1,12 @@
+
+<%= search_form_for @query, url: product_path(product.id), data: { controller: 'filter', turbo_stream: 'true' } do |f| %>
+  <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">
+    <%= f.label :s, 'Sort By' %>
+  </h3>
+  <div class="flex items-center mb-4">
+    <%= f.select :s, options_for_select(sort_option_list, params.dig(:query, :s)),
+                 {},
+                 { data: { action: 'change->filter#update', filter_target: 'select' } }
+    %>
+  </div>
+<% end %>
