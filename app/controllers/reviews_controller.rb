@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @product.reviews.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
       respond_to do |format|
         format.html { redirect_to product_path(@product.id) }
@@ -19,7 +20,6 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    # use ransack here for review sorting & pagination
     @reviews = @product.reviews
   end
 
@@ -40,7 +40,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :comment, :user_id).tap do |review_param|
+    params.require(:review).permit(:rating, :comment, :product_id).tap do |review_param|
       review_param[:rating] = review_param[:rating].to_i
     end
   end
