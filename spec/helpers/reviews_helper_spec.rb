@@ -6,10 +6,11 @@ require 'rails_helper'
 RSpec.describe ReviewsHelper, type: :helper do
   describe '#review_star' do
     subject { helper.review_star(star_index, rating) }
-    let(:gray) { 'w-4 h-4 mr-1 text-gray-300' }
-    let(:yellow) { 'w-4 h-4 mr-1 text-yellow-300' }
+    let(:default_class) { 'w-4 h-4 mr-1' }
+    let(:gray) { 'text-gray-300' }
+    let(:yellow) { 'text-yellow-300' }
 
-    context 'when star_index > rating' do
+    context 'when star_index is greater than user rating' do
       let(:star_index) { 4 }
       let(:rating) { 2 }
 
@@ -18,7 +19,7 @@ RSpec.describe ReviewsHelper, type: :helper do
       end
     end
 
-    context 'when star_index < rating' do
+    context 'when star_index is less than user rating' do
       let(:star_index) { 3 }
       let(:rating) { 5 }
 
@@ -27,13 +28,17 @@ RSpec.describe ReviewsHelper, type: :helper do
       end
     end
 
-    context 'when star_index == rating' do
+    context 'when star_index is equal to user rating' do
       let(:star_index) { 5 }
       let(:rating) { 5 }
 
       it 'returns a gray star' do
         expect(subject).to match(yellow)
       end
+    end
+
+    it 'includes default class' do
+      expect(subject).to match(default_class)
     end
   end
 
