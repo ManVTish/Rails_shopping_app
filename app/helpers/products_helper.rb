@@ -13,4 +13,12 @@ module ProductsHelper
       ['Latest products', 'created_at desc']
     ]
   end
+
+  def discounted_price(price, discount)
+    (price - (price * (discount / 100)))&.round(2)
+  end
+
+  def average_rating(product)
+    product.reviews.average(:rating)&.floor
+  end
 end

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :warning, :info
 
   include Pagy::Backend
+
   protected
 
   def configure_permitted_parameters
