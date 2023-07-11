@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
   end
 
   def index
+    # use ransack here for review sorting & pagination
     @reviews = @product.reviews
   end
 

@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
     @query = @reviews.ransack(params[:query])
     @query.sorts = ['created_at asc'] if @query.sorts.empty?
     @pagy, @reviews = pagy(@query.result)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
     render :show, status: :ok
   end
 
