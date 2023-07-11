@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :products, only: %i[index show] do
-    resources :reviews, except: :show
+    resources :reviews, only: :create
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config

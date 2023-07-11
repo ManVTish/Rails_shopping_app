@@ -84,6 +84,9 @@
   <h3 class="border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">Customer's Review</h3>
   <% if user_signed_in? %>
     <%= render "reviews/form", product: @product %>
+    <div>
+      <%= render 'reviews/review_sort', product: @product %>
+    </div>
   <% end %>
   <div>
     <div>
@@ -95,10 +98,6 @@
           <%= 'No reviews yet' %>
         <% end %>
       <% end %>
-    </div>
-
-    <div>
-      <%= render 'reviews/review_sort', product: @product %>
     </div>
   </div>
 </section>

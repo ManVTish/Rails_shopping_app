@@ -2,10 +2,6 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index]
   before_action :find_product, only: %i[new create index destroy]
 
-  def new
-    @review = @product.reviews.new
-  end
-
   def create
     @review = @product.reviews.new(review_params)
     @review.user_id = current_user.id
@@ -16,21 +12,6 @@ class ReviewsController < ApplicationController
       end
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  def index
-    # use ransack here for review sorting & pagination
-    @reviews = @product.reviews
-  end
-
-  def destroy
-    @review = @product.reviews.find_by(id: params[:id])
-    @review.destroy
-
-    respond_to do |format|
-      format.html { redirect_to product_path(@product.id) }
-      format.turbo_stream
     end
   end
 
