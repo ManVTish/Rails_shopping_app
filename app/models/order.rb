@@ -1,6 +1,4 @@
 class Order < ApplicationRecord
-  has_many :items, as: :itemable
-  has_many :comments, as: :commentable
   belongs_to :user
 
   validates :status, presence: true
