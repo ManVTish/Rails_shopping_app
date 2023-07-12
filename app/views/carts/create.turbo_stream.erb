@@ -1,0 +1,7 @@
+<%= turbo_stream.update dom_id(current_user, "cart_items_count") do %>
+  <% if current_user.cart %>
+    <div class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+      <%= current_user.cart.cart_items.sum(:quantity) %>
+    </div>
+  <% end %>
+<% end %>

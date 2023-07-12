@@ -3,6 +3,13 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
 
+  resources :carts, only: :create do
+    # member do
+    #   get  :cart_products
+    # end
+  end
+  get '/carts/index', to: 'carts#cart_products'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
