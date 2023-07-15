@@ -18,3 +18,5 @@ Features to be added:
 2) Payment Integration.
 
 Note: This project is still up for improvement, any suggestions & feedback is very appreciated.
+
+Main branch: integration-main
