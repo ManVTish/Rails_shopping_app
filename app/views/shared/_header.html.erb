@@ -11,11 +11,15 @@
             <i class="fa-solid fa-bag-shopping"></i>
           </div>
           <div class="text-xs leading-3">
-            <%= link_to "Cart", edit_user_registration_path, class: "navbar-link" %>
+            <%= link_to "Cart", carts_index_path, class: "navbar-link" %>
           </div>
-          <div class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-            2
-          </div>
+          <%= turbo_frame_tag dom_id(current_user, "cart_items_count") do %>
+            <% if current_user.cart %>
+              <div class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
+                <%= current_user.cart.cart_items.sum(:quantity) %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
         <div class="text-center text-gray-700 hover:text-primary transition relative">
           <div class="text-2xl px-4">

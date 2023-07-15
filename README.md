@@ -1,24 +1,20 @@
 # README
+Shopping application using Rails Framework.
+This is a full stack app using Rails for backend and Hotwire with Tailwind css for frontend.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Features includes:
 
-Things you may want to cover:
+1) User Login, Signup, Logout.
+2) Product Page access without login/signup.
+3) Product Sort based on Catgeories, Price Range, Latest Product & Price order:
+   a) Categories with checkboxes.
+   b) Price Range with input field for MIN & MAX.
+   c) Drop Down for latest product & Price order.
+4) Add Product(s) to Cart.
 
-* Ruby version
 
-* System dependencies
+Features to be added:
+1) Order Checkout, with email intimation.
+2) Payment Integration.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Note: This project is still up for improvement, any suggestions & feedback is very appreciated.

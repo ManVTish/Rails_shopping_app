@@ -25,7 +25,6 @@
       <div class="text-xs text-gray-500 ml-3">(150)</div>
     </div>
   </div>
-  <a href="#"
-     class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
-    to cart</a>
+
+  <%= button_to 'Add to cart', carts_path(product_id: @product.id), method: :post, class: 'block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition' %>
 </div>
